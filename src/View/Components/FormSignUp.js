@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import '../../Styles/signUp.scss'
 
-function FormSignUp(props) {
-	const { isOpen }= props
+function FormEdit(props) {
+	const { isOpen , value , idEdit}= props
 	const [input, setInput] = useState({
 		fistName: "",
 		lastName: "",
@@ -13,9 +13,11 @@ function FormSignUp(props) {
 		password: "",
 		repeatpassword:""
 	})
-	
+	useEffect(() => {
+		setInput(value)
+	},[value]) 
 	const handleInput = (e) => {
-		const { value, name } = e.target;
+		const { value, name} = e.target;
 		setInput({
 			...input,
 			[name]: value,
@@ -24,7 +26,6 @@ function FormSignUp(props) {
 	const handleSaveSignUp = () => {
 		if (input.password !== input.repeatpassword) {
 			return(alert("Nhập sai repeatpassword"))
-
 		}
 		if (input.email.includes("@") === false) {
 			return(alert("Vui lòng nhập lại email !"))
@@ -52,7 +53,6 @@ function FormSignUp(props) {
 	const handleIsOpen = () => {
 		props.handleIsOpen()
 	}
-	
 	return (
 		<div>
 			{isOpen ? 
@@ -60,7 +60,7 @@ function FormSignUp(props) {
 					<div className="modal-dialog">
 						<div className="modal-content">
 						<div className="modal-header">
-							<h5 className="modal-title">SignUp Title</h5>
+							<h5 className="modal-title">{ (idEdit > 0 ? "Sửa" : "Thêm mới")}</h5>
 							<button onClick={handleIsOpen} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div className="modal-body">
@@ -88,7 +88,7 @@ function FormSignUp(props) {
 									Gender:
 									<div className="input-group mb-3">
 										<select className="form-select" name="gender" value={input.gender} onChange={handleInput} id="inputGroupSelect01">
-											<option value="nam">nam</option>
+											<option  value="nam">nam</option>
 											<option value="nữ">nữ</option>
 										</select>
 									</div>
@@ -112,7 +112,7 @@ function FormSignUp(props) {
 						</div>
 							<div className="modal-footer">
 								<button type="button" onClick={handleIsOpen} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-								<button type="button" onClick={handleSaveSignUp} className="btn btn-primary">Sign Up</button>
+								<button type="button"  onClick={handleSaveSignUp} className="btn btn-primary">{ (idEdit > 0 ? "Sửa" : "Thêm mới")}</button>
 							</div>
 						</div>
 					</div>
@@ -121,4 +121,4 @@ function FormSignUp(props) {
 		</div>
 	)
 }
-export default FormSignUp;
+export default FormEdit;

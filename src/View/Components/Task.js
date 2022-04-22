@@ -1,6 +1,4 @@
-import axios from "axios";
 import { useState } from "react";
-import FormEdit from "./FormEdit";
 
 function Task(props) {
     const { data, input,url} = props;
@@ -19,29 +17,10 @@ function Task(props) {
 		password: "",
 		repeatpassword:""
     })
-    const handleIsOpen = () => {
-        setIsOpen(!isOpen)
-    }
-    const handleEdit = (id) => {
-        
+    const handleSignUp = (id) => {
         setIdEdit(id)
-        axios.get(`${url}/${id}`).then(res => {
-            console.log(typeof res.data.birthday);
-            setValueEdit({
-                fistName: res.data.fistName,
-                lastName: res.data.lastName,
-                email: res.data.email,
-                birthday: res.data.birthday,
-                gender: res.data.gender,
-                useName: res.data.useName,
-                password: res.data.password,
-                repeatpassword: res.data.password
-            })
-        })
+        props.handleSignUp(id)
         setIsOpen(!isOpen)
-    }
-    const handleSaveEdit = (arr) => {
-        axios.patch(`${url}/${idEdit}`,arr)
     }
     return (
         <table className="table">
@@ -70,7 +49,7 @@ function Task(props) {
                         <td>{e.birthday}</td>
                         <td>{e.gender}</td>
                         <td>
-                            <button type="button" onClick={()=>handleEdit(e.id)} className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            <button type="button" onClick={()=>handleSignUp(e.id)} className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 Sửa thông tin 
                             </button>
                             &nbsp;
@@ -81,7 +60,7 @@ function Task(props) {
                     </tr>
                 ))}
             </tbody>
-            <FormEdit handleSaveEdit={handleSaveEdit} isOpen={isOpen} handleIsOpen={handleIsOpen} handleEdit={handleEdit} valueEdit={valueEdit} />
+          {/* <FormEdit handleSaveEdit={handleSaveEdit} isOpen={isOpen} handleIsOpen={handleIsOpen} handleEdit={handleEdit} valueEdit={valueEdit} /> */}
         </table>
     )
 }
