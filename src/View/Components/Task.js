@@ -1,24 +1,12 @@
 import { useState } from "react";
 
 function Task(props) {
-    const { data, input,url} = props;
-    const [idEdit , setIdEdit]= useState()
+    const { data, input} = props;
     const handleDelete = (id) => {
         props.handleDelete(id)
     }
     const [isOpen, setIsOpen]= useState(false)
-    const [valueEdit, setValueEdit] = useState({
-        fistName: "",
-		lastName: "",
-		email: "",
-		birthday:"",
-		gender: "",
-		useName: "",
-		password: "",
-		repeatpassword:""
-    })
     const handleSignUp = (id) => {
-        setIdEdit(id)
         props.handleSignUp(id)
         setIsOpen(!isOpen)
     }
@@ -60,7 +48,6 @@ function Task(props) {
                     </tr>
                 ))}
             </tbody>
-          {/* <FormEdit handleSaveEdit={handleSaveEdit} isOpen={isOpen} handleIsOpen={handleIsOpen} handleEdit={handleEdit} valueEdit={valueEdit} /> */}
         </table>
     )
 }
