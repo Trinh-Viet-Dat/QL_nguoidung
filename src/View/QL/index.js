@@ -12,7 +12,6 @@ function QL() {
         })
     }, [data])
     const initValue = {
-
         fistName: "",
         lastName: "",
         email: "",
@@ -50,7 +49,7 @@ function QL() {
     }
     const handleSaveSignUp = (value) => {
         console.log(idEdit);
-        if (idEdit) {
+        if (parseInt(idEdit, 10)) {
             axios.patch(`${url}/${idEdit}`, value)
         } else {
             axios.post(`${url}`, value)

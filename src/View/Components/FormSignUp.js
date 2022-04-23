@@ -3,7 +3,7 @@ import '../../Styles/signUp.scss'
 
 function FormEdit(props) {
 	const { isOpen, value, idEdit } = props
-	const [input, setInput] = useState()
+	const [input, setInput] = useState(value)
 	useEffect(() => {
 		setInput(value)
 	}, [value])
@@ -30,7 +30,6 @@ function FormEdit(props) {
 			useName: input.useName,
 			password: input.password,
 		}
-
 		props.handleSaveSignUp(arr)
 		props.handleIsOpen()
 	}
