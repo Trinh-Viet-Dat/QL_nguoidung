@@ -14,7 +14,7 @@ function FormEdit(props) {
 			[name]: value,
 		});
 	}
-	const handleSaveSignUp = () => {
+	const handleSave = () => {
 		if (input.password !== input.repeatpassword) {
 			return (alert("Nhập sai repeatpassword"))
 		}
@@ -30,7 +30,7 @@ function FormEdit(props) {
 			useName: input.useName,
 			password: input.password,
 		}
-		props.handleSaveSignUp(arr)
+		props.handleSave(arr)
 		props.handleIsOpen()
 	}
 	const handleIsOpen = () => {
@@ -71,6 +71,7 @@ function FormEdit(props) {
 											Gender:
 											<div className="input-group mb-3">
 												<select className="form-select" name="gender" value={input.gender} onChange={handleInput} id="inputGroupSelect01">
+													<option value="">---Chọn---</option>
 													<option value="nam">nam</option>
 													<option value="nữ">nữ</option>
 												</select>
@@ -95,7 +96,7 @@ function FormEdit(props) {
 							</div>
 							<div className="modal-footer">
 								<button type="button" onClick={handleIsOpen} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-								<button type="button" onClick={handleSaveSignUp} className="btn btn-primary">{(idEdit > 0 ? "Sửa" : "Thêm mới")}</button>
+								<button type="button" onClick={handleSave} className="btn btn-primary">{(idEdit > 0 ? "Sửa" : "Thêm mới")}</button>
 							</div>
 						</div>
 					</div>
