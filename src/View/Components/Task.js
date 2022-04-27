@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function Task(props) {
     const { data, inputSearch } = props;
@@ -26,7 +26,7 @@ function Task(props) {
                 {data?.filter(
                     e => {
                         return (
-                            (e.fistName.includes(inputSearch.name) || e.lastName.includes(inputSearch.name)) & e.gender.includes(inputSearch.gender)
+                            (e.fistName.toUpperCase().includes(inputSearch.name) || e.lastName.includes(inputSearch.name)) & e.gender.includes(inputSearch.genders)
                         )
                     }
                 ).map((e, index) => (

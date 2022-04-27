@@ -5,12 +5,8 @@ import Task from "../Components/Task";
 import useApi from "../../Api/useApi"
 
 function QL() {
-    //const url = `http://localhost:8080/api/forms`
     const [data, setData] = useState([])
     useEffect(() => {
-        // axios.get(url).then(res => {
-        //     setData(res.data)
-        // })
         useApi.getAll().then(res => {
             setData(res.data)
         })
@@ -23,7 +19,7 @@ function QL() {
         gender: "",
         useName: "",
         password: "",
-        repeatpassword: ""
+        repeatpassword: "",
     }
     const [value, setValue] = useState(initValue)
     const [isOpen, setIsOpen] = useState(false)
@@ -54,10 +50,8 @@ function QL() {
     const handleSave = (value) => {
         console.log(idEdit);
         if (parseInt(idEdit, 10)) {
-            //axios.patch(`${url}/${idEdit}`, value)
             useApi.edit(idEdit, value)
         } else {
-            // axios.post(`${url}`, value)
             useApi.add(value)
         }
     }
@@ -65,12 +59,11 @@ function QL() {
         setIsOpen(!isOpen)
     }
     const handleDelete = (id) => {
-        //axios.delete(`${url}/${id}`)
         useApi.delete(id)
     }
     const [inputSearch, setInputSearch] = useState({
         name: "",
-        gender: ""
+        genders: ""
     })
     const handleInput = (e) => {
         const { name, value } = e.target;
@@ -89,14 +82,14 @@ function QL() {
                         <input type="text" style={{ marginLeft: "20px" }} onChange={handleInput} value={inputSearch.name} className="form-control" placeholder="Tìm kiếm" name="name" />
                     </div>
                     <div className="col">
-                        <select style={{ width: "100px" }} className="form-select" value={inputSearch.gender} name="gender" onChange={handleInput} id="inputGroupSelect01">
+                        <select style={{ width: "100px" }} className="form-select" value={inputSearch.genders} name="genders" onChange={handleInput} id="inputGroupSelect01">
                             <option value="">---All---</option>
                             <option value="nam">nam</option>
                             <option value="nữ">nữ</option>
                         </select>
                     </div>
                     <div className="col">
-                        <button style={{ margin: "4px", marginLeft: "60%" }} value="0" onClick={(id) => handleSignUp(id.target.value)} type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <button style={{ margin: "4px", marginLeft: "40%" }} value="0" onClick={(id) => handleSignUp(id.target.value)} type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                             Thêm nhân viên
                         </button>
                     </div>

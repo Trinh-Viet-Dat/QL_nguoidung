@@ -80,7 +80,6 @@ function FormEdit(props) {
 									</div>
 									<div className="row">
 										<div className="col">
-
 											UseName:<input type="text" className="form-control" placeholder="UseName" name="useName" value={input.useName} onChange={handleInput} />
 										</div>
 									</div>
